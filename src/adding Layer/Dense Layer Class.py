@@ -40,4 +40,4 @@ print(X)
 dense1 = Layer_Dense(2, 3)
 dense1.forword(X)
 
-print(dense1.output[:5])
+print(dense1.output)
