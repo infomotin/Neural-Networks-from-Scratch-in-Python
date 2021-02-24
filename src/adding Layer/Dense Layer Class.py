@@ -14,10 +14,30 @@
 # forward pass . Just like everything else, however, this is not the only way to do things. You can
 # have the data loop back around and do other interesting things. We’ll keep it usual and perform a
 # regular forward pass.
+import numpy as np
+import nnfs
+from nnfs.datasets import spiral_data
+
+nnfs.init()
+
 
 class Layer_Dense:
     def __init__(self, n_inputs, n_neurons):
-        pass
+        self.weights = 0.01 * np.random.randn(n_inputs, n_neurons)
+        self.biases = np.zeros((1, n_neurons))
 
     def forword(self, inputs):
-        pass
+        self.output = np.dot(inputs, self.weights) + self.biases
+
+
+# demo data loade from libray
+
+X, y = spiral_data(samples=100, classes=3)
+
+print(X)
+
+# create an object on Layer_Dense class
+dense1 = Layer_Dense(2, 3)
+dense1.forword(X)
+
+print(dense1.output[:5])
