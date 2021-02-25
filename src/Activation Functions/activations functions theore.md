@@ -140,3 +140,27 @@ relationships if we use linear activation functions. It should be fairly obvious
 case as each neuron in each layer acts linearly, so the entire network is a linear function as well.
 
 # ReLU Activation in a Pair of Neurons
+
+<!--
+As you can see, negative values have been clipped (modified to be zero). That’s all there is to the
+rectified linear activation function used in the hidden layer. Let’s talk about the activation
+function that we are going to use on the output of the last layer.
+-->
+
+## The Softmax Activation Function
+
+In our case, we’re looking to get this model to be a classifier, so we want an activation function
+meant for classification. One of these is the Softmax activation function. First, why are we
+bothering with another activation function? It just depends on what our overall goals are. In this
+case, the rectified linear unit is unbounded, not normalized with other units, and exclusive. “Not
+normalized” implies the values can be anything, an output of [12, 99, 318] is without context, and
+“exclusive” means each output is independent of the others. To address this lack of context, the
+softmax activation on the output data can take in non-normalized, or uncalibrated, inputs and
+produce a normalized distribution of probabilities for our classes. In the case of classification,
+what we want to see is a prediction of which class the network “thinks” the input represents. This
+distribution returned by the softmax activation function represents confidence scores for each
+class and will add up to 1. The predicted class is associated with the output neuron that returned
+the largest confidence score. Still, we can also note the other confidence scores in our overarching
+algorithm/program that uses this network. For example, if our network has a confidence
+distribution for two classes: [0.45, 0.55] , the prediction is the 2nd class, but the confidence in this
+prediction isn’t very high. Maybe our program would not act in this case since it’s not very

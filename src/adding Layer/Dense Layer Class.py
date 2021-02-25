@@ -30,14 +30,29 @@ class Layer_Dense:
         self.output = np.dot(inputs, self.weights) + self.biases
 
 
+class Activation_ReLU:
+    def forward(self, inputs):
+        self.output = np.maximum(0, inputs)
+
 # demo data loade from libray
+
 
 X, y = spiral_data(samples=100, classes=3)
 
-print(X)
+# print(X)
 
 # create an object on Layer_Dense class
 dense1 = Layer_Dense(2, 3)
-dense1.forword(X)
+activeation = Activation_ReLU()
 
-print(dense1.output)
+
+dense1.forword(X)
+activeation.forward(dense1.output)
+
+print(activeation.output[:5])
+
+# print(dense1.output)
+
+# As you can see, negative values have been clipped (modified to be zero). That’s all there is to the
+# rectified linear activation function used in the hidden layer. Let’s talk about the activation
+# function that we are going to use on the output of the last layer.
