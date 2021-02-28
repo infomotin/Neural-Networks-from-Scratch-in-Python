@@ -17,5 +17,16 @@ df = pd.read_csv('./src/pandas/data.csv')
 
 # print(df[df["GROSS_SAL"].str.replace(',', '')] > 30000)
 
-print(df.loc[:8])
-print(df.iloc[:8])
+# print(df.loc[:8])
+# print(df.iloc[:8])
+
+# df.set_index("Test_Set")
+# print(df.index)
+print(df.head())
+df.to_csv('./src/pandas/wr.csv')
+
+
+# df.set_index("name", inplace=True)
+print(df.head())
+
+df1 = pd.Series()
